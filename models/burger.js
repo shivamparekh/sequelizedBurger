@@ -1,38 +1,45 @@
-// orm
+// dependencies
 
-var orm = require('../config/orm');
+// capital references the standard library
 
-//
+var Sequelize = require("sequelize");
 
-var burger = {
+// lowercase references the db.
 
-	all: function(callback) {
+var sequelize = require("../config/connection.js");
 
-		orm.selectAll('burgers', function(res) {
+// model creation
 
-			callback(res);
+var Burger = sequelize.define("burgers", {
 
-		})
-	},
+  id: {
 
-	create: function(cols, vals, callback) {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
 
-		orm.insertOne('burgers', cols, vals, function(res) {
+  },
 
-			callback(results);
+  burger_name: {
 
-		})
-	},
+    type: Sequelize.STRING
 
-	update: function(objColVals, condition, callback) {
+  },
 
-		orm.updateOne('burgers', objColVals, condition, function(res) {
+  devoured: {
 
-			callback(results);
-		})
-	}
+    type: Sequelize.STRING
 
-}
+  },
 
-module.exports = burger;
+}, {
 
+  timestamps: false
+
+});
+
+// sync
+
+Burger.sync();
+
+module.exports = Burger;
