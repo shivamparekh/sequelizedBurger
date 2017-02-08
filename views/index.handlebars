@@ -20,21 +20,19 @@
 
 			  	{{#unless this.devoured}}
 
-				<div class="col-xs-8 text-center">
+				<div class="col-xs-10 text-center">
 
 					<pre>{{this.id}}. {{this.burger_name}}
 
 					</pre>
 
-				  		<!-- {{this.Date}} -->
-
 				</div>
 
-				<div class="col-xs-4 text-center">
+				<div class="col-xs-2 text-center">
 
 					<form method="POST" action="/burgers/update?_method=PUT" class="button-size">
 
-						<input input type="hidden" type="text" name="burger_id" value={{this.id}}>
+						<input input type="hidden" type="text" name="id" value={{this.id}}>
 
 						<br>
 

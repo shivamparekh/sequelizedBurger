@@ -42,7 +42,7 @@ router.post("/burgers/create", function(req, res) {
 
 router.put("/burgers/update", function(req, res) {
 
-  Burgers.update({ devoured: 1 },
+  Burgers.update({ devoured: req.params.devoured },
 
     {
       where: {id: req.params.id}
