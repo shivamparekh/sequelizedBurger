@@ -10,7 +10,7 @@ var sequelize = require("../config/connection.js");
 
 // model creation
 
-var Burger = sequelize.define("burgers", {
+var Burgers = sequelize.define("burgers", {
 
   id: {
 
@@ -44,5 +44,6 @@ var Burger = sequelize.define("burgers", {
 
 });
 
+Burgers.sync();
 
-module.exports = Burger;
+module.exports = Burgers;
