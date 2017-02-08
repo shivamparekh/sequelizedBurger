@@ -22,15 +22,21 @@ var Burger = sequelize.define("burgers", {
 
   burger_name: {
 
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false,
 
   },
 
   devoured: {
 
-    type: Sequelize.STRING
+    type: Sequelize.BOOLEAN
 
   },
+
+  fecha: {
+
+    type: Sequelize.DATE
+  }
 
 }, {
 
@@ -38,8 +44,5 @@ var Burger = sequelize.define("burgers", {
 
 });
 
-// sync
-
-Burger.sync();
 
 module.exports = Burger;
