@@ -10,40 +10,85 @@ var sequelize = require("../config/connection.js");
 
 // model creation
 
-var Burgers = sequelize.define("burgers", {
+var Burgers = sequelize.define('burgers', {
+  
+id: {
 
-  id: {
+  type: Sequelize.INTEGER,
+  autoIncrement: true,
+  primaryKey: true
 
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
+},
+burger_name: {
 
-  },
+  type: Sequelize.STRING(50),
+  allowNull: false,
 
-  burger_name: {
+},
+devoured: {
 
-    type: Sequelize.STRING,
-    allowNull: false,
+  type: Sequelize.BOOLEAN,
+  defaultvalue: false,
 
-  },
-
-  devoured: {
-
-    type: Sequelize.BOOLEAN
-
-  },
-
-  fecha: {
-
-    type: Sequelize.DATE
-  }
-
-}, {
+}
+},
+ {
 
   timestamps: false
 
 });
 
+//sync the db
+
 Burgers.sync();
 
-module.exports = Burgers;
+var burger = {
+
+  all: function(callback) {
+
+    Burgers.findAll({}).then(function(res) {
+
+      callback(res);
+
+    });
+
+  },
+
+  create: function(burger_name, callback) {
+
+    Burgers.create({
+
+      burger_name: burger_name
+
+    }).then(function() {
+
+      callback();
+
+    }).catch(function(err) {
+
+      callback(err);
+
+    });
+  
+  },
+
+  update: function(id, callback) {
+
+    Burgers.update({
+
+      devoured: 0
+
+    },
+    {
+
+      where: {id: id}
+
+  }).then(function(){
+
+    callback();
+
+  });
+}
+};
+
+module.exports = burger;
