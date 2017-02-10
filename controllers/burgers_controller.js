@@ -8,7 +8,7 @@ var burger = require('../models/burger.js');
 
 router.get('/', function(req, res){
 
-  res.redirect('/index');
+  res.redirect('/burgers');
 
 });
 
@@ -17,7 +17,7 @@ router.get('/burgers', function (req, res) {
   burger.all(function (data) {
 
     var hbsObj = { burgers: data };
-    res.render('index', hbsObj);
+    res.render('burgers', hbsObj);
 
   });
 });
